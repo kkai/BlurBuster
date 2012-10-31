@@ -227,7 +227,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minValue="1" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="3Nu-3X-9tY">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="1" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="3Nu-3X-9tY">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="190" id="kYZ-nF-ZNe"/>
                                 </constraints>
@@ -767,6 +767,7 @@
         <class className="RecordSensorsDataViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RecordSensorsDataViewController.h"/>
             <relationships>
+                <relationship kind="action" name="startButtonPushed:"/>
                 <relationship kind="outlet" name="accelX" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="accelY" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="accelZ" candidateClass="UILabel"/>
@@ -776,6 +777,7 @@
                 <relationship kind="outlet" name="gyroX" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="gyroY" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="gyroZ" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="isStalableLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="startButton" candidateClass="UIButton"/>
             </relationships>
         </class>

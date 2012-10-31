@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "SensorMonitor.h"
 
-@interface ViewController : UIViewController{
+@interface ViewController : UIViewController<SensorMonitorDelegate>{
     
     __weak IBOutlet UILabel *accelX;
     __weak IBOutlet UILabel *accelY;
@@ -28,6 +29,14 @@
     __weak IBOutlet UILabel *numberOfPicturesLabel;
     AVCaptureSession *session;
     AVCaptureStillImageOutput *stillImageOutput;
+    float _frequency;
+    float _threshold;
+    int _numberOfPictures;
+    bool _isRunning;
+    bool _isStable;
+    bool _readyToTake;
+    
+    SensorMonitor *sensorMonitor;
 }
 
 - (IBAction)slideChanged:(id)sender;
