@@ -13,17 +13,11 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/ImageIO.h>
 
-NSString* const kAccelerometerFileAppendix = @"_Accel";
-NSString* const kGyroscopeFileAppendix = @"_Gyro";
-NSString* const kCompassFileAppendix = @"_Comp";
-NSString* const kGpsFileAppendix = @"_GPS";
-
 @interface RecordSensorsDataViewController (){
     float _systemVersion;
     float frequency;
     bool isRunning;
     bool readyToTake;
-    FileWriter *fileWriter;
 }
 
 @property(nonatomic, retain) CMMotionManager *manager;
@@ -209,38 +203,5 @@ NSString* const kGpsFileAppendix = @"_GPS";
      }];
     
 }
-
--(void)startRecording {
-    
-    if (!fileWriter.isRecording) {
-        
-        //prevent labels from being edited
-        //end any editing sessions
-        
-        [fileWriter startRecording];
-    }
-}
-
--(void)stopRecording {
-    
-    if (fileWriter.isRecording) {
-        
-        [fileWriter stopRecording];
-        [self removeFileWriterFromAllSensors];
-        
-        //make labels editable again
-        removeLabelButton.enabled = YES;
-        addLabelButton.enabled = YES;
-        
-        //allow the device to auto-lock itself again and disable proximity sensing
-        iPhoneLoggerAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate preventAutoLock:NO];
-        [appDelegate enableProximitySensing:NO];
-        
-        [self.spinningWheel stopAnimating];
-        [self adaptRecordingButtonAppearance];
-    }
-}
-
 
 @end

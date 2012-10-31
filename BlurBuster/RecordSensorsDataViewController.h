@@ -8,12 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "FileWriter.h"
-
-extern NSString* const kAccelerometerFileAppendix;
-extern NSString* const kGyroscopeFileAppendix;
-extern NSString* const kCompassFileAppendix;
-extern NSString* const kGpsFileAppendix;
 
 @interface RecordSensorsDataViewController : UIViewController{
     

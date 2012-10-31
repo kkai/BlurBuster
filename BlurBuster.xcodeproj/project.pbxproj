@@ -29,10 +29,6 @@
 		764F7436163EB2640072BE9D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764F7435163EB2640072BE9D /* AssetsLibrary.framework */; };
 		764F7438163EB26C0072BE9D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764F7437163EB26C0072BE9D /* AVFoundation.framework */; };
 		764F743A163EB2750072BE9D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764F7439163EB2750072BE9D /* CoreMotion.framework */; };
-		7674B3CD163F7C8B00C2BAA6 /* FileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7674B3CC163F7C8B00C2BAA6 /* FileWriter.m */; };
-		7674B3CE163F7C8B00C2BAA6 /* FileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7674B3CC163F7C8B00C2BAA6 /* FileWriter.m */; };
-		7674B3D3163F7D6800C2BAA6 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 7674B3D2163F7D6800C2BAA6 /* Preferences.m */; };
-		7674B3D4163F7D6800C2BAA6 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 7674B3D2163F7D6800C2BAA6 /* Preferences.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,11 +71,6 @@
 		764F7435163EB2640072BE9D /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		764F7437163EB26C0072BE9D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		764F7439163EB2750072BE9D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		7674B3CB163F7C8B00C2BAA6 /* FileWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileWriter.h; sourceTree = "<group>"; };
-		7674B3CC163F7C8B00C2BAA6 /* FileWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileWriter.m; sourceTree = "<group>"; };
-		7674B3D0163F7CA800C2BAA6 /* Listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Listener.h; sourceTree = "<group>"; };
-		7674B3D1163F7D6800C2BAA6 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
-		7674B3D2163F7D6800C2BAA6 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,16 +140,11 @@
 		764F73EF163EB1530072BE9D /* BlurBuster */ = {
 			isa = PBXGroup;
 			children = (
+				768194B61641257800DFCAE3 /* View */,
 				764F73F8163EB1530072BE9D /* AppDelegate.h */,
 				764F73F9163EB1530072BE9D /* AppDelegate.m */,
 				764F7401163EB1530072BE9D /* MainStoryboard.storyboard */,
-				764F7404163EB1530072BE9D /* ViewController.h */,
-				764F7405163EB1530072BE9D /* ViewController.m */,
-				7626153B163ECF83002FFE88 /* RecordSensorsDataViewController.h */,
-				7626153C163ECF83002FFE88 /* RecordSensorsDataViewController.m */,
-				7674B3D1163F7D6800C2BAA6 /* Preferences.h */,
-				7674B3D2163F7D6800C2BAA6 /* Preferences.m */,
-				7674B3C9163F7C6400C2BAA6 /* Listeners */,
+				7674B3C9163F7C6400C2BAA6 /* Listener */,
 				764F73F0163EB1530072BE9D /* Supporting Files */,
 			);
 			path = BlurBuster;
@@ -197,14 +183,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7674B3C9163F7C6400C2BAA6 /* Listeners */ = {
+		7674B3C9163F7C6400C2BAA6 /* Listener */ = {
 			isa = PBXGroup;
 			children = (
-				7674B3D0163F7CA800C2BAA6 /* Listener.h */,
-				7674B3CB163F7C8B00C2BAA6 /* FileWriter.h */,
-				7674B3CC163F7C8B00C2BAA6 /* FileWriter.m */,
 			);
-			name = Listeners;
+			name = Listener;
+			sourceTree = "<group>";
+		};
+		768194B61641257800DFCAE3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				764F7404163EB1530072BE9D /* ViewController.h */,
+				764F7405163EB1530072BE9D /* ViewController.m */,
+				7626153B163ECF83002FFE88 /* RecordSensorsDataViewController.h */,
+				7626153C163ECF83002FFE88 /* RecordSensorsDataViewController.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,8 +315,6 @@
 				764F73FA163EB1530072BE9D /* AppDelegate.m in Sources */,
 				764F7406163EB1530072BE9D /* ViewController.m in Sources */,
 				7626153D163ECF83002FFE88 /* RecordSensorsDataViewController.m in Sources */,
-				7674B3CD163F7C8B00C2BAA6 /* FileWriter.m in Sources */,
-				7674B3D3163F7D6800C2BAA6 /* Preferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,8 +323,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				764F741B163EB1530072BE9D /* BlurBusterTests.m in Sources */,
-				7674B3CE163F7C8B00C2BAA6 /* FileWriter.m in Sources */,
-				7674B3D4163F7D6800C2BAA6 /* Preferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
