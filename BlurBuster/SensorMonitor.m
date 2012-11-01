@@ -7,10 +7,6 @@
 //
 
 #import "SensorMonitor.h"
-#import <CoreMotion/CoreMotion.h>
-#import <CoreImage/CoreImage.h>
-#import <AssetsLibrary/AssetsLibrary.h>
-#import <ImageIO/ImageIO.h>
 
 @implementation SensorMonitor
 
@@ -44,6 +40,8 @@
     //インスタンスの作成
     self.manager = [[CMMotionManager alloc]init];
     
+    beginningOfEpoch = [[NSDate alloc]initWithTimeIntervalSince1970:0.0];
+    timestampOffsetInitialized = false;
 }
 
 -(void)startCMDeviceMotion:(int)frequency{
@@ -57,7 +55,14 @@
         //ハンドラ
         CMDeviceMotionHandler handler = ^(CMDeviceMotion *motion, NSError *error){
             
-            [self.delegate sensorValueChanged:motion];
+            if (!timestampOffsetInitialized) {
+                timestampOffsetFrom1970 = [self getTimestamp] - motion.timestamp;
+                timestampOffsetInitialized = true;
+            }
+            
+            NSTimeInterval timestamp = motion.timestamp + timestampOffsetFrom1970;
+            
+            [self.delegate sensorValueChanged:motion timestamp:timestamp];
             
         };
         
@@ -130,5 +135,11 @@
      }];
     
 }
+
+-(NSTimeInterval)getTimestamp {	
+	NSTimeInterval timestamp = -[beginningOfEpoch timeIntervalSinceNow];
+	return timestamp;
+}
+
 
 @end

@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CoreMotion/CoreMotion.h>
+#import <CoreImage/CoreImage.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <ImageIO/ImageIO.h>
+
 
 @protocol SensorMonitorDelegate <NSObject>
 
--(void)sensorValueChanged:(CMDeviceMotion *)motion;
+-(void)sensorValueChanged:(CMDeviceMotion *)motion timestamp:(NSTimeInterval)timestamp;
 -(void)finishedTakePicture;
 
 @end
@@ -24,6 +28,11 @@
     
     AVCaptureSession *session;
     AVCaptureStillImageOutput *stillImageOutput;
+    
+    NSDate *beginningOfEpoch;
+    
+    NSTimeInterval timestampOffsetFrom1970;
+    BOOL timestampOffsetInitialized;
 }
 
 

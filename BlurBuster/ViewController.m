@@ -82,7 +82,7 @@
     }
 }
 
--(void)sensorValueChanged:(CMDeviceMotion *)motion{
+-(void)sensorValueChanged:(CMDeviceMotion *)motion timestamp:(NSTimeInterval)timestamp{
     accelX.text = [NSString stringWithFormat:@"%lf",motion.userAcceleration.x];
     accelY.text = [NSString stringWithFormat:@"%lf",motion.userAcceleration.y];
     accelZ.text = [NSString stringWithFormat:@"%lf",motion.userAcceleration.z];

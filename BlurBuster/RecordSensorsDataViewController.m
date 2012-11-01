@@ -37,6 +37,9 @@
     
     [sensorMonitor prepareCMDeviceMotion];
     [sensorMonitor startCMDeviceMotion:_frequency];
+    
+    fileWriter = [[FileWriter alloc]init];
+    
 }
 
 
@@ -55,6 +58,7 @@
 - (void)viewDidUnload {
     
     [sensorMonitor stopSensor];
+    [fileWriter stopRecording];
     accelX = nil;
     accelY = nil;
     accelZ = nil;
@@ -72,14 +76,15 @@
     if(_isRunning == false){
         _isRunning = true;
         [startButton setTitle:@"Stop" forState:UIControlStateNormal];
+        [fileWriter startRecording];
     }else{
         _isRunning = false;
-        ;
         [startButton setTitle:@"Start" forState:UIControlStateNormal];
+        [fileWriter stopRecording];
     }
 }
 
--(void)sensorValueChanged:(CMDeviceMotion *)motion{
+-(void)sensorValueChanged:(CMDeviceMotion *)motion timestamp:(NSTimeInterval)timestamp{
     accelX.text = [NSString stringWithFormat:@"%lf",motion.userAcceleration.x];
     accelY.text = [NSString stringWithFormat:@"%lf",motion.userAcceleration.y];
     accelZ.text = [NSString stringWithFormat:@"%lf",motion.userAcceleration.z];

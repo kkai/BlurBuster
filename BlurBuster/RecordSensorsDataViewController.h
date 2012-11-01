@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "SensorMonitor.h"
+#import "FileWriter.h"
 
 @interface RecordSensorsDataViewController : UIViewController<SensorMonitorDelegate>{
     
@@ -18,7 +19,6 @@
     __weak IBOutlet UILabel *gyroX;
     __weak IBOutlet UILabel *gyroY;
     __weak IBOutlet UILabel *gyroZ;
-    __weak IBOutlet UILabel *isStalableLabel;
     __weak IBOutlet UILabel *attitudeRoll;
     __weak IBOutlet UILabel *attitudePitch;
     __weak IBOutlet UILabel *attitudeYaw;
@@ -29,6 +29,7 @@
     bool _isRunning;
     
     SensorMonitor *sensorMonitor;
+    FileWriter *fileWriter;
 
 }
 

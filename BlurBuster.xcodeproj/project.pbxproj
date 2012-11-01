@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7635A0B616424A45005058A9 /* FileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7635A0B516424A45005058A9 /* FileWriter.m */; };
 		764F73EA163EB1530072BE9D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764F73E9163EB1530072BE9D /* UIKit.framework */; };
 		764F73EC163EB1530072BE9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764F73EB163EB1530072BE9D /* Foundation.framework */; };
 		764F73EE163EB1530072BE9D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764F73ED163EB1530072BE9D /* CoreGraphics.framework */; };
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7635A0B416424A45005058A9 /* FileWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileWriter.h; sourceTree = "<group>"; };
+		7635A0B516424A45005058A9 /* FileWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileWriter.m; sourceTree = "<group>"; };
 		764F73E5163EB1530072BE9D /* BlurBuster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlurBuster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		764F73E9163EB1530072BE9D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		764F73EB163EB1530072BE9D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -108,11 +111,6 @@
 		764F73DA163EB1530072BE9D = {
 			isa = PBXGroup;
 			children = (
-				764F7439163EB2750072BE9D /* CoreMotion.framework */,
-				764F7437163EB26C0072BE9D /* AVFoundation.framework */,
-				764F7435163EB2640072BE9D /* AssetsLibrary.framework */,
-				764F7433163EB25B0072BE9D /* ImageIO.framework */,
-				764F7430163EB2510072BE9D /* CoreMedia.framework */,
 				764F73EF163EB1530072BE9D /* BlurBuster */,
 				764F7413163EB1530072BE9D /* BlurBusterTests */,
 				764F73E8163EB1530072BE9D /* Frameworks */,
@@ -132,6 +130,11 @@
 		764F73E8163EB1530072BE9D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				764F7439163EB2750072BE9D /* CoreMotion.framework */,
+				764F7437163EB26C0072BE9D /* AVFoundation.framework */,
+				764F7435163EB2640072BE9D /* AssetsLibrary.framework */,
+				764F7433163EB25B0072BE9D /* ImageIO.framework */,
+				764F7430163EB2510072BE9D /* CoreMedia.framework */,
 				764F73E9163EB1530072BE9D /* UIKit.framework */,
 				764F73EB163EB1530072BE9D /* Foundation.framework */,
 				764F73ED163EB1530072BE9D /* CoreGraphics.framework */,
@@ -191,6 +194,8 @@
 			children = (
 				769A4B7B16412C9800E31F8B /* SensorMonitor.h */,
 				769A4B7C16412C9800E31F8B /* SensorMonitor.m */,
+				7635A0B416424A45005058A9 /* FileWriter.h */,
+				7635A0B516424A45005058A9 /* FileWriter.m */,
 			);
 			name = Listener;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 				764F7406163EB1530072BE9D /* ViewController.m in Sources */,
 				769A4B7D16412C9800E31F8B /* SensorMonitor.m in Sources */,
 				769A4B8516414A5100E31F8B /* RecordSensorsDataViewController.m in Sources */,
+				7635A0B616424A45005058A9 /* FileWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
