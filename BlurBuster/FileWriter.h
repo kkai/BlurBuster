@@ -15,7 +15,7 @@
 extern NSString* const kAccelerometerFileAppendix;
 extern NSString* const kGyroscopeFileAppendix;
 
-@interface FileWriter : NSObject<SensorMonitorDelegate>{
+@interface FileWriter : NSObject{
     
     bool isRecording;
     
@@ -26,23 +26,22 @@ extern NSString* const kGyroscopeFileAppendix;
     
     NSString *accelerometerFileName;
     NSString *gyroFileName;
-    
     NSString *currentFilePrefix;
     NSString *currentRecordingDirectory;
+    
 }
 
 @property(nonatomic,retain)NSString *currentFilePrefix;
-
 @property(nonatomic,retain)NSString *currentRecordingDirectory;
 @property(nonatomic,retain)NSString *accelerometerFileName;
 @property(nonatomic,retain)NSString *gyroFileName;
 
 -(void)startRecording;
 -(void)stopRecording;
-
+-(void)recordSensorValue:(CMDeviceMotion *)motionTN timestamp:(NSTimeInterval)timestampTN;
 
 -(NSString *)setupTextFile:(FILE **)file withBaseFileName:(NSString *)baseFileName appendix:(NSString *)appendix dataDescription:(NSString *) description subtitle:(NSString *) subtitle columnDescriptions:(NSArray *)columnDescriptions;
-- (void)initAccelerometerFile:(NSString*)name;
-- (void)initGyroFile:(NSString*)name;
+-(void)initAccelerometerFile:(NSString*)name;
+-(void)initGyroFile:(NSString*)name;
 
 @end

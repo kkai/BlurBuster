@@ -27,14 +27,6 @@
     __weak IBOutlet UISlider *thresholdSlider;
     __weak IBOutlet UIButton *startButton;
     __weak IBOutlet UILabel *numberOfPicturesLabel;
-    AVCaptureSession *session;
-    AVCaptureStillImageOutput *stillImageOutput;
-    float _frequency;
-    float _threshold;
-    int _numberOfPictures;
-    bool _isRunning;
-    bool _isStable;
-    bool _readyToTake;
     
     SensorMonitor *sensorMonitor;
 }

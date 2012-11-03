@@ -10,10 +10,17 @@
 
 @implementation SensorMonitor
 
+-(id)init{
+    self = [super init];
+    if(self != nil){
+        session = [[AVCaptureSession alloc] init];
+    }
+    return self;
+}
+
 - (void)prepareCMDeviceMotion{
 	// Do any additional setup after loading the view, typically from a nib.
     
-    session = [[AVCaptureSession alloc] init];
     session.sessionPreset = AVCaptureSessionPresetPhoto;
     
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];

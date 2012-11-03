@@ -8,7 +8,10 @@
 
 #import "RecordSensorsDataViewController.h"
 
-@interface RecordSensorsDataViewController ()
+@interface RecordSensorsDataViewController (){
+    float _frequency;
+    bool _isRunning;
+}
 
 @end
 
@@ -95,6 +98,10 @@
     attitudePitch.text = [NSString stringWithFormat:@"%lf",motion.attitude.pitch];
     attitudeYaw.text = [NSString stringWithFormat:@"%lf",motion.attitude.yaw];
     
+    if(_isRunning){
+//        [sensorMonitor capture];
+        [fileWriter recordSensorValue:motion timestamp:timestamp];
+    }
 }
 
 

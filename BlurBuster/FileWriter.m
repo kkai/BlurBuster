@@ -22,6 +22,7 @@ NSString* const kGyroscopeFileAppendix = @"_Gyro";
     if(self != nil){
         fileManager = [[NSFileManager alloc]init];
         isRecording = false;
+        
     }
     return self;
 }
@@ -33,34 +34,33 @@ NSString* const kGyroscopeFileAppendix = @"_Gyro";
 -(void)startRecording{
     
     if(!isRecording){
-    
-        isRecording = true;
-        
+
         NSDate *now = [NSDate date];
-        self.currentFilePrefix = [[now description]stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+        self.currentFilePrefix = [[now description] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentDirectory = [paths lastObject];
         self.currentRecordingDirectory = [documentDirectory stringByAppendingPathComponent:self.currentFilePrefix];
         [fileManager createDirectoryAtPath:self.currentRecordingDirectory withIntermediateDirectories:NO attributes:nil error:NULL];
-        
+
         //init files
         [self initAccelerometerFile:self.currentFilePrefix];
         [self initGyroFile:self.currentFilePrefix];
+        
+        isRecording = true;
     }
 }
 
 -(void)stopRecording{
     
     if(isRecording){
-    
-        isRecording = false;
-    
+        
         //close all open files
         fclose(accelerometerFile);
         fclose(gyroFile);
     
-        [fileManager removeItemAtPath:self.accelerometerFileName error:NULL];
-        [fileManager removeItemAtPath:self.gyroFileName error:NULL];
+//        [fileManager removeItemAtPath:self.accelerometerFileName error:NULL];
+//        [fileManager removeItemAtPath:self.gyroFileName error:NULL];
+        isRecording = false;
     }
 }
 
@@ -68,10 +68,10 @@ NSString* const kGyroscopeFileAppendix = @"_Gyro";
     
     NSString *fileName = [[baseFileName stringByAppendingString:appendix] stringByAppendingPathExtension:@"txt"];
     NSString *completeFilePath = [currentRecordingDirectory stringByAppendingPathComponent:fileName];
-    
+
     //create the file for the record
     *file = fopen([completeFilePath UTF8String], "a");
-
+    
     bool isExists = [fileManager fileExistsAtPath:completeFilePath];
     NSLog(@"%@ is exists:%d",completeFilePath, isExists);
     
@@ -144,12 +144,9 @@ NSString* const kGyroscopeFileAppendix = @"_Gyro";
                          ];
 }
 
-//-(void)didReceiveDeviceMotion:(CMDeviceMotion *)motionTN timestamp:(NSTimeInterval)timestampTN{
--(void)sensorValueChanged:(CMDeviceMotion *)motionTN timestamp:(NSTimeInterval)timestampTN{
+-(void)recordSensorValue:(CMDeviceMotion *)motionTN timestamp:(NSTimeInterval)timestampTN{
     
     if(isRecording){
-    
-    NSLog(@"sensorValueChanged");
     
     fprintf(accelerometerFile,
             "%10.3f\t %i\t %f\t %f\t %f\t %i\n",

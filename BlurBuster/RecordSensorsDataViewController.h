@@ -23,10 +23,6 @@
     __weak IBOutlet UILabel *attitudePitch;
     __weak IBOutlet UILabel *attitudeYaw;
     __weak IBOutlet UIButton *startButton;
-    AVCaptureSession *session;
-    AVCaptureStillImageOutput *stillImageOutput;
-    float _frequency;
-    bool _isRunning;
     
     SensorMonitor *sensorMonitor;
     FileWriter *fileWriter;

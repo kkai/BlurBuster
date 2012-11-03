@@ -8,6 +8,17 @@
 
 #import "ViewController.h"
 
+@interface ViewController(){
+    float _frequency;
+    float _threshold;
+    int _numberOfPictures;
+    bool _isRunning;
+    bool _isStable;
+    bool _readyToTake;
+}
+
+@end
+
 @implementation ViewController
 
 - (void)viewDidLoad
