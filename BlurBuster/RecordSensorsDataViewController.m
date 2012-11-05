@@ -11,6 +11,8 @@
 @interface RecordSensorsDataViewController (){
     float _frequency;
     bool _isRunning;
+    bool _readyToTake;
+    int _numberOfPictures;
 }
 
 @end
@@ -36,7 +38,9 @@
     sensorMonitor.delegate = self;
     
     _isRunning = false;
+    _readyToTake = true;
     _frequency = 50.0;
+    _numberOfPictures = 0;
     
     [sensorMonitor prepareCMDeviceMotion];
     [sensorMonitor startCMDeviceMotion:_frequency];
@@ -99,10 +103,19 @@
     attitudeYaw.text = [NSString stringWithFormat:@"%lf",motion.attitude.yaw];
     
     if(_isRunning){
-//        [sensorMonitor capture];
-        [fileWriter recordSensorValue:motion timestamp:timestamp];
+        if(_readyToTake){
+            _readyToTake = false;
+            [sensorMonitor capture];
+            [fileWriter recordSensorValue:motion timestamp:timestamp];
+            
+            _numberOfPictures ++;
+            numberOfPicturesLabel.text = [NSString stringWithFormat:@"%d",_numberOfPictures];
+        }
     }
 }
 
+-(void)finishedTakePicture{
+    _readyToTake = true;
+}
 
 @end

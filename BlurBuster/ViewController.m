@@ -37,6 +37,8 @@
     
     [sensorMonitor prepareCMDeviceMotion];
     [sensorMonitor startCMDeviceMotion:_frequency];
+    
+    fileWriter = [[FileWriter alloc]init];
 }
 
 
@@ -86,10 +88,12 @@
     if(_isRunning == false){
         _isRunning = true;
         [startButton setTitle:@"Stop" forState:UIControlStateNormal];
+        [fileWriter startRecording];
     }else{
         _isRunning = false;
         ;
         [startButton setTitle:@"Start" forState:UIControlStateNormal];
+        [fileWriter stopRecording];
     }
 }
 
@@ -110,6 +114,7 @@
             [sensorMonitor capture];
             _numberOfPictures ++;
             numberOfPicturesLabel.text = [NSString stringWithFormat:@"%d",_numberOfPictures];
+        [fileWriter recordSensorValue:motion timestamp:timestamp];
         }
         isStalableLabel.text = @"Stable";
         isStalableView.backgroundColor = [UIColor greenColor];

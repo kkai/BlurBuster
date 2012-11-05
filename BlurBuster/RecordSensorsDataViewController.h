@@ -23,6 +23,7 @@
     __weak IBOutlet UILabel *attitudePitch;
     __weak IBOutlet UILabel *attitudeYaw;
     __weak IBOutlet UIButton *startButton;
+    __weak IBOutlet UILabel *numberOfPicturesLabel;
     
     SensorMonitor *sensorMonitor;
     FileWriter *fileWriter;

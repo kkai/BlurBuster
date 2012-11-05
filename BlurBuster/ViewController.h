@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "SensorMonitor.h"
+#import "FileWriter.h"
 
 @interface ViewController : UIViewController<SensorMonitorDelegate>{
     
@@ -29,6 +30,7 @@
     __weak IBOutlet UILabel *numberOfPicturesLabel;
     
     SensorMonitor *sensorMonitor;
+    FileWriter *fileWriter;
 }
 
 - (IBAction)slideChanged:(id)sender;

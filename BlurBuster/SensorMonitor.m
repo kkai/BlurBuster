@@ -119,11 +119,13 @@
      {
          CFDictionaryRef exifAttachments = CMGetAttachment( imageSampleBuffer, kCGImagePropertyExifDictionary, NULL);
          if (exifAttachments){
-             // Do something with the attachments.
+             // Do something with the attachments.             
              NSLog(@"attachements: %@", exifAttachments);
          }
          else
              NSLog(@"no attachments");
+         
+         NSLog(@"%@",imageSampleBuffer);
          
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
          UIImage *image = [[UIImage alloc] initWithData:imageData];
