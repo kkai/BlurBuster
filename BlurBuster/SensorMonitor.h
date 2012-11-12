@@ -33,6 +33,8 @@
     
     NSTimeInterval timestampOffsetFrom1970;
     BOOL timestampOffsetInitialized;
+    
+    NSString *timestampFile;
 }
 
 

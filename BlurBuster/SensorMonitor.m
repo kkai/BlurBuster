@@ -14,6 +14,13 @@
     self = [super init];
     if(self != nil){
         session = [[AVCaptureSession alloc] init];
+        
+        //initialize the path for saving the picture timestamps
+        NSArray *pathArr = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                               NSUserDomainMask,
+                                                               YES);
+        timestampFile = [[pathArr objectAtIndex:0]
+                          stringByAppendingPathComponent:@"timestamps.txt" ];
     }
     return self;
 }
@@ -97,6 +104,29 @@
     }
 }
 
+//appends a string to a file (given the filename in the path)
+- (BOOL) appendFile:(NSString *)path withString:(NSString*)string;
+{
+    BOOL result = YES;
+    NSFileHandle* fh = [NSFileHandle fileHandleForWritingAtPath:path];
+    if ( !fh ) {
+        [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
+        fh = [NSFileHandle fileHandleForWritingAtPath:path];
+    }
+    if ( !fh ) return NO;
+    @try {
+        [fh seekToEndOfFile];
+        [fh writeData:[string dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    @catch (NSException * e) {
+        result = NO;
+    }
+    [fh closeFile];
+    return result;
+}
+
+
+
 -(void) capture{
     AVCaptureConnection *videoConnection = nil;
     for (AVCaptureConnection *connection in stillImageOutput.connections){
@@ -127,6 +157,11 @@
          
          NSLog(@"%@",imageSampleBuffer);
          
+         //save the timestamp to file
+         NSString* timestamp = [NSString stringWithFormat:@"%f\n", [self getTimestamp]];
+         NSLog(timestamp);
+         [self appendFile:timestampFile withString:timestamp];
+         
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
          UIImage *image = [[UIImage alloc] initWithData:imageData];
          NSLog(@"%@",image);
@@ -137,6 +172,7 @@
          [library writeImageDataToSavedPhotosAlbum:imageData metadata:(__bridge id)attachments completionBlock:^(NSURL *assetURL, NSError *error) {
              [self.delegate finishedTakePicture];
              NSLog(@"saved");
+             
              if (error) {
                  NSLog(@"Save to camera roll failed");
              }
@@ -145,7 +181,7 @@
     
 }
 
--(NSTimeInterval)getTimestamp {	
+-(NSTimeInterval)getTimestamp {
 	NSTimeInterval timestamp = -[beginningOfEpoch timeIntervalSinceNow];
 	return timestamp;
 }
