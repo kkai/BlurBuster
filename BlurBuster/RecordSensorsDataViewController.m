@@ -39,7 +39,7 @@
     
     _isRunning = false;
     _readyToTake = true;
-    _frequency = 50.0;
+    _frequency = 100.0;
     _numberOfPictures = 0;
     
     [sensorMonitor prepareCMDeviceMotion];
@@ -103,14 +103,20 @@
     attitudeYaw.text = [NSString stringWithFormat:@"%lf",motion.attitude.yaw];
     
     if(_isRunning){
+        
+        //I put this out of _readyToTake (as otherwise we will record very little sensor values (only 2-3 Hz)
+        [fileWriter recordSensorValue:motion timestamp:timestamp];
+        
+        
+        //this should not be in sensorValueChanged ... maybe it does not matter though
         if(_readyToTake){
             _readyToTake = false;
             [sensorMonitor capture];
-            [fileWriter recordSensorValue:motion timestamp:timestamp];
-            
             _numberOfPictures ++;
             numberOfPicturesLabel.text = [NSString stringWithFormat:@"%d",_numberOfPictures];
         }
+        
+    
     }
 }
 

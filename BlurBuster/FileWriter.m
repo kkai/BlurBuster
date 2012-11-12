@@ -66,7 +66,7 @@ NSString* const kGyroscopeFileAppendix = @"_Gyro";
 
 -(NSString *)setupTextFile:(FILE **)file withBaseFileName:(NSString *)baseFileName appendix:(NSString *)appendix dataDescription:(NSString *)description subtitle:(NSString *)subtitle columnDescriptions:(NSArray *)columnDescriptions{
     
-    NSString *fileName = [[baseFileName stringByAppendingString:appendix] stringByAppendingPathExtension:@"txt"];
+    NSString *fileName = [[baseFileName stringByAppendingString:appendix] stringByAppendingPathExtension:@"csv"];
     NSString *completeFilePath = [currentRecordingDirectory stringByAppendingPathComponent:fileName];
 
     //create the file for the record
@@ -76,17 +76,23 @@ NSString* const kGyroscopeFileAppendix = @"_Gyro";
     NSLog(@"%@ is exists:%d",completeFilePath, isExists);
     
     //write an initial header
-    fprintf(*file, "%% %s recorded with '%s' \n %% \n",[description UTF8String],[PRODUCT_NAME UTF8String]);
+    //fprintf(*file, "%% %s recorded with '%s' \n %% \n",[description UTF8String],[PRODUCT_NAME UTF8String]);
     
-    if(subtitle){
-        fprintf(*file, "%s",[subtitle UTF8String]);
-    }
-    fprintf(*file, "%% \n%% \n");
-	fprintf(*file, "%% \n%% Column description:\n");
+    //if(subtitle){
+    //    fprintf(*file, "%s",[subtitle UTF8String]);
+    //}
+    
+    //fprintf(*file, "%% \n%% \n");
+	//fprintf(*file, "%% \n%% Column description:\n");
     for (int i = 0; i < [columnDescriptions count]; i++) {
-        fprintf(*file, "%% \t %i: %s\n", i + 1, [[columnDescriptions objectAtIndex:i] UTF8String]);
+        //fprintf(*file, "%% ,%i: %s\n", i + 1, [[columnDescriptions objectAtIndex:i] UTF8String]);
+        if([columnDescriptions count] == (i+1)){
+            fprintf(*file, "%s\n",[[columnDescriptions objectAtIndex:i] UTF8String]);
+        }else{
+            fprintf(*file, "%s,",[[columnDescriptions objectAtIndex:i] UTF8String]);
+        }
     }
-	fprintf(*file, "%% \n%% \n");
+	//fprintf(*file, "%% \n%% \n");
     
     return completeFilePath;
 }
@@ -149,7 +155,7 @@ NSString* const kGyroscopeFileAppendix = @"_Gyro";
     if(isRecording){
     
     fprintf(accelerometerFile,
-            "%10.3f\t %i\t %f\t %f\t %f\t %i\n",
+            "%10.3f,%i,%f,%f,%f,%i\n",
             timestampTN,
             0,
             motionTN.userAcceleration.x,
@@ -171,7 +177,7 @@ NSString* const kGyroscopeFileAppendix = @"_Gyro";
     double yaw = attitude.yaw;
     
     fprintf(gyroFile,
-            "%10.3f\t %i\t %f\t %f\t %f\t %f\t %f\t %f\t %f\t %f\t %f\t %f\t %f\t %f\t %f\t %i\t %i\n",
+            "%10.3f,%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%i,%i\n",
             timestampTN,
             0,
             x,
