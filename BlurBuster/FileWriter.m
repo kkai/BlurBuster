@@ -223,4 +223,11 @@ NSString* const kTimestampAppendix = @"_Timestamp";
     [UIImageJPEGRepresentation(image,0.7f) writeToFile:pictureFilePath atomically:YES];
     NSLog(@"%@",pictureFilePath);
 }
+
+-(void)recordPicture:(NSArray*)args{
+    NSNumber* num = (NSNumber*)args[1];
+    [self recordPicture:(UIImage*)args[0] timestamp:[num doubleValue]];
+}
+
+
 @end

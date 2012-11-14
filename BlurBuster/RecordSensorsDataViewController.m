@@ -125,7 +125,9 @@
 }
 
 -(void)finishedTakePicture:(UIImage*)image timestamp:(NSTimeInterval)timestamp{
-    [fileWriter recordPicture:image timestamp:timestamp];
+        
+    [NSThread detachNewThreadSelector:@selector(recordPicture:) toTarget:fileWriter withObject:[NSArray arrayWithObjects:image,[NSNumber numberWithDouble:timestamp], nil]];
+    //[fileWriter recordPicture:image timestamp:timestamp];
     _readyToTake = true;
 }
 
