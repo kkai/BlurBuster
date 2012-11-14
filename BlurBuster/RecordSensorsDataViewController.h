@@ -23,6 +23,9 @@
     __weak IBOutlet UILabel *attitudePitch;
     __weak IBOutlet UILabel *attitudeYaw;
     __weak IBOutlet UIButton *startButton;
+    __weak IBOutlet UILabel *magnetX;
+    __weak IBOutlet UILabel *magnetY;
+    __weak IBOutlet UILabel *magnetZ;
     __weak IBOutlet UILabel *numberOfPicturesLabel;
     
     SensorMonitor *sensorMonitor;

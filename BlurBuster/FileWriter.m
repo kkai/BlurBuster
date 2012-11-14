@@ -10,12 +10,14 @@
 
 NSString* const kAccelerometerFileAppendix = @"_Accel";
 NSString* const kGyroscopeFileAppendix = @"_Gyro";
+NSString* const kTimestampAppendix = @"_Timestamp";
 
 @implementation FileWriter
 
-@synthesize currentFilePrefix, currentRecordingDirectory;
+@synthesize currentFilePrefix, currentRecordingDirectory, currentRecordingDirectoryForPicture;
 @synthesize accelerometerFileName;
 @synthesize gyroFileName;
+@synthesize timestampFileName;
 
 -(id)init{
     self = [super init];
@@ -41,10 +43,13 @@ NSString* const kGyroscopeFileAppendix = @"_Gyro";
         NSString *documentDirectory = [paths lastObject];
         self.currentRecordingDirectory = [documentDirectory stringByAppendingPathComponent:self.currentFilePrefix];
         [fileManager createDirectoryAtPath:self.currentRecordingDirectory withIntermediateDirectories:NO attributes:nil error:NULL];
-
+        self.currentRecordingDirectoryForPicture = [[documentDirectory stringByAppendingPathComponent:self.currentFilePrefix] stringByAppendingPathComponent:@"picture"];
+        [fileManager createDirectoryAtPath:self.currentRecordingDirectoryForPicture withIntermediateDirectories:NO attributes:nil error:NULL];
+        
         //init files
         [self initAccelerometerFile:self.currentFilePrefix];
         [self initGyroFile:self.currentFilePrefix];
+        [self initTimestampFile:self.currentFilePrefix];
         
         isRecording = true;
     }
@@ -57,7 +62,8 @@ NSString* const kGyroscopeFileAppendix = @"_Gyro";
         //close all open files
         fclose(accelerometerFile);
         fclose(gyroFile);
-    
+        fclose(timestampFile);
+        
 //        [fileManager removeItemAtPath:self.accelerometerFileName error:NULL];
 //        [fileManager removeItemAtPath:self.gyroFileName error:NULL];
         isRecording = false;
@@ -150,6 +156,16 @@ NSString* const kGyroscopeFileAppendix = @"_Gyro";
                          ];
 }
 
+-(void)initTimestampFile:(NSString*)name{
+    self.timestampFileName = [self setupTextFile:&timestampFile
+                                withBaseFileName:name appendix:kTimestampAppendix
+                                 dataDescription:@"Timestamp data"
+                                        subtitle:nil
+                              columnDescriptions:[NSArray arrayWithObject:
+                                                  @"Seconds.milliseconds since 1970"]
+                              ];
+}
+
 -(void)recordSensorValue:(CMDeviceMotion *)motionTN timestamp:(NSTimeInterval)timestampTN{
     
     if(isRecording){
@@ -198,4 +214,13 @@ NSString* const kGyroscopeFileAppendix = @"_Gyro";
     }
 }
 
+-(void)recordPicture:(UIImage*)image timestamp:(NSTimeInterval)timestamp{
+    if(isRecording){
+        fprintf(timestampFile, "%10.3f\n",
+                timestamp);
+    }
+    NSString *pictureFilePath = [NSString stringWithFormat:@"%@/%f.jpg",self.currentRecordingDirectoryForPicture,timestamp];
+    [UIImageJPEGRepresentation(image,0.7f) writeToFile:pictureFilePath atomically:YES];
+    NSLog(@"%@",pictureFilePath);
+}
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="JJJ-02-zrP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="JJJ-02-zrP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
@@ -666,7 +666,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="r" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pax-Ui-S7Y">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="x" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pax-Ui-S7Y">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="19" id="5nZ-cB-YeY"/>
                                         </constraints>
@@ -674,12 +674,12 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="p" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8p5-V7-zJI">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="y" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8p5-V7-zJI">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="y" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3C9-hR-oke">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="z" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3C9-hR-oke">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="22" id="Kcw-JQ-4kF"/>
                                             <constraint firstAttribute="height" constant="24" id="byr-0W-4xd"/>
@@ -760,6 +760,9 @@
                         <outlet property="gyroX" destination="9nr-S7-h88" id="JLc-0p-ZNS"/>
                         <outlet property="gyroY" destination="nXe-Gt-C7o" id="x9G-cJ-Kig"/>
                         <outlet property="gyroZ" destination="xZk-O1-hsC" id="6ap-MA-S2F"/>
+                        <outlet property="magnetX" destination="RNq-jo-8DZ" id="07Q-ka-tkZ"/>
+                        <outlet property="magnetY" destination="G7y-wx-l5U" id="VtZ-MO-ckK"/>
+                        <outlet property="magnetZ" destination="MEd-PW-QdW" id="lQf-Fa-xr7"/>
                         <outlet property="numberOfPicturesLabel" destination="OsH-Zk-zRY" id="P2d-Z2-mBA"/>
                         <outlet property="startButton" destination="6On-80-KD0" id="mf5-ie-Yx2"/>
                     </connections>
@@ -789,6 +792,10 @@
                 <relationship kind="outlet" name="gyroX" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="gyroY" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="gyroZ" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="magnetX" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="magnetY" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="magnetZ" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numberOfPicturesLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="startButton" candidateClass="UIButton"/>
             </relationships>
         </class>

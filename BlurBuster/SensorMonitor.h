@@ -13,11 +13,10 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/ImageIO.h>
 
-
 @protocol SensorMonitorDelegate <NSObject>
 
 -(void)sensorValueChanged:(CMDeviceMotion *)motion timestamp:(NSTimeInterval)timestamp;
--(void)finishedTakePicture;
+-(void)finishedTakePicture:(UIImage *)image timestamp:(NSTimeInterval)timestamp;
 
 @end
 
@@ -34,7 +33,7 @@
     NSTimeInterval timestampOffsetFrom1970;
     BOOL timestampOffsetInitialized;
     
-    NSString *timestampFile;
+//    NSString *timestampFile;
 }
 
 

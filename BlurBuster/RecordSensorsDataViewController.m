@@ -101,6 +101,10 @@
     attitudeRoll.text = [NSString stringWithFormat:@"%lf",motion.attitude.roll];
     attitudePitch.text = [NSString stringWithFormat:@"%lf",motion.attitude.pitch];
     attitudeYaw.text = [NSString stringWithFormat:@"%lf",motion.attitude.yaw];
+    attitudeYaw.text = [NSString stringWithFormat:@"%lf",motion.attitude.yaw];
+    magnetX.text = [NSString stringWithFormat:@"%lf",motion.magneticField.field.x];
+    magnetY.text = [NSString stringWithFormat:@"%lf",motion.magneticField.field.y];
+    magnetZ.text = [NSString stringWithFormat:@"%lf",motion.magneticField.field.z];
     
     if(_isRunning){
         
@@ -120,7 +124,8 @@
     }
 }
 
--(void)finishedTakePicture{
+-(void)finishedTakePicture:(UIImage*)image timestamp:(NSTimeInterval)timestamp{
+    [fileWriter recordPicture:image timestamp:timestamp];
     _readyToTake = true;
 }
 
